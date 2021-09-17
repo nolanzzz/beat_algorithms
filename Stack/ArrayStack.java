@@ -20,11 +20,11 @@ peek
 isEmpty
 
  */
-public class Stack {
+public class ArrayStack {
 
     private int[] items;
     private int count;
-    public Stack(int size) {
+    public ArrayStack(int size) {
         items = new int[size];
         count = 0;
     }
