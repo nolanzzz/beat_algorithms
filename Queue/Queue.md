@@ -1,7 +1,4 @@
-package DataStructures;
-
-/*
-Queue:
+### Queue
 
 - Process jobs based on received order
 - Printers (manage jobs)
@@ -12,7 +9,10 @@ Queue:
 
 First In First Out (FIFO)
 
-Build Queue with Array, LinkedList, or Stack
+Build Queue with
+- Array
+- LinkedList
+- Stack
 
 All in constant time - O(1):
 enqueue / add
@@ -20,7 +20,3 @@ dequeue
 peek
 isEmpty
 isFull
-
- */
-public class Queue {
-}
