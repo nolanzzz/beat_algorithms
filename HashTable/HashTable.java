@@ -1,4 +1,4 @@
-package DataStructures;/*
+package DataStructures.HashTable;/*
 - Spell checkers
 - Dictionaries
 - Compilers
