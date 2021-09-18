@@ -17,28 +17,25 @@ public class ArrayQueue {
     public ArrayQueue(int size) {
         front = 0;
         rear = 0;
-        count = 0;
         items = new int[size];
+        count = 0;
     }
     public void enqueue(int item) {
         if (isFull()) {
-            throw new IllegalStateException();
+            throw new StackOverflowError();
         }
         count++;
         items[rear++] = item;
         rear %= items.length;
-        System.out.println("count " + count);
     }
     public int dequeue() {
         if (isEmpty()) {
             throw new IllegalStateException();
         }
         count--;
-        int res = items[front];
-        items[front++] = 0;
+        int item = items[front++];
         front %= items.length;
-        System.out.println("count " + count);
-        return res;
+        return item;
     }
     public int peek() {
         if (isEmpty()) {
