@@ -1,25 +1,6 @@
 package DataStructures.Tree;
 
 public class BinarySearchTree {
-    public static void main(String[] args) {
-        BinarySearchTree t = new BinarySearchTree();
-        t.insert(7);
-        t.insert(4);
-        t.insert(9);
-        t.insert(1);
-        t.insert(6);
-        t.insert(8);
-        t.insert(10);
-
-        System.out.println(t.find(7));
-        System.out.println(t.find(5));
-
-        t.delete(7);
-        t.delete(1);
-        t.delete(10);
-
-        System.out.println("done");
-    }
     private class Node {
         private int value;
         private Node leftChild, rightChild;
@@ -118,6 +99,25 @@ public class BinarySearchTree {
             minNode = minNode.leftChild;
         }
         return minNode;
+    }
+    public static void main(String[] args) {
+        BinarySearchTree t = new BinarySearchTree();
+        t.insert(7);
+        t.insert(4);
+        t.insert(9);
+        t.insert(1);
+        t.insert(6);
+        t.insert(8);
+        t.insert(10);
+
+        System.out.println(t.find(7));
+        System.out.println(t.find(5));
+
+        t.delete(7);
+        t.delete(1);
+        t.delete(10);
+
+        System.out.println("done");
     }
 }
 
