@@ -1,124 +1,129 @@
 package DataStructures.Tree;
 
-public class BinarySearchTree {
-    private class Node {
-        private int value;
-        private Node leftChild, rightChild;
-        public Node(int value) {
+public class BinarySearchTree<T extends Comparable<T>> {
+    class Node<T> {
+        T value;
+        Node<T> left, right;
+        Node(T value) {
             this.value = value;
-            leftChild = rightChild = null;
+            left = right = null;
         }
         public String toString() {
-            return "Node=" + value;
+            return "Node=" + value +"";
         }
     }
-    private Node root;
-
-    public void insert(int value) {
+    private Node<T> root = null;
+    public void insert(T value) {
+        // 1. 如果root为空，value设为root
         if (root == null) {
-            root = new Node(value);
+            root = new Node<>(value);
             return;
         }
-        Node cur = root;
+        // 2. 找到插入的点
+        Node<T> curr = root;
         while (true) {
-            if (cur.value > value) {
-                if (cur.leftChild == null) {
-                    cur.leftChild = new Node(value);
+            int c = value.compareTo(curr.value);
+            // A 比curr大，往右走
+            if (c > 0) {
+                if (curr.right == null) {
+                    curr.right = new Node<>(value);
                     break;
                 }
-                cur = cur.leftChild;
+                curr = curr.right;
             }
-            else if (cur.value < value) {
-                if (cur.rightChild == null) {
-                    cur.rightChild = new Node(value);
+            // B 比curr小，往左走
+            else if (c < 0) {
+                if (curr.left == null) {
+                    curr.left = new Node<>(value);
                     break;
                 }
-                cur = cur.rightChild;
+                curr = curr.left;
             }
+            // C 跟curr重复，无法insert
             else {
                 break;
             }
         }
+
     }
-    public boolean find(int value) {
-        Node cur = root;
-        while (cur != null) {
-            if (cur.value == value) {
+    public boolean find(T value) {
+        Node<T> curr = root;
+        while (curr != null) {
+            int c = value.compareTo(curr.value);
+            if (c == 0) {
                 return true;
             }
-            else if (cur.value < value) {
-                cur = cur.rightChild;
+            else if (c < 0) {
+                curr = curr.left;
             }
             else {
-                cur = cur.leftChild;
+                curr = curr.right;
             }
         }
         return false;
     }
-    public void delete(int value) {
+    public void delete(T value) {
         root = deleteNode(root, value);
     }
-    private Node deleteNode(Node root, int value) {
+    private Node<T> deleteNode(Node<T> root, T value) {
         if (root == null) {
             return null;
         }
-
-        // Case 1 - 要删除的在左分叉
-        if (value < root.value) {
-            root.leftChild = deleteNode(root.leftChild, value);
+        int c = value.compareTo(root.value);
+        // 1 - 要删除的在右边
+        if (c > 0) {
+            root.right = deleteNode(root.right, value);
         }
-        // Case 2 - 要删除的在有分叉
-        else if (value > root.value) {
-            root.rightChild = deleteNode(root.rightChild, value);
+        // 2 - 要删除的在左边
+        else if (c < 0) {
+            root.left = deleteNode(root.left, value);
         }
-        // Case 3 - root就是要删除的值
+        // 3 - 要删除root
         else {
-            // Case A - root没有children
-            if (root.leftChild == null && root.rightChild == null) {
+            // A - 没有child，直接删除
+            if (root.left == null && root.right == null) {
                 return null;
             }
-            // Case B - root只有left child
-            else if (root.rightChild == null) {
-                return root.leftChild;
+            // B - 只有左边，左边
+            else if (root.right == null) {
+                return root.left;
             }
-            // Case C - root只有right child
-            else if (root.leftChild == null) {
-                return root.rightChild;
+            // C - 只有右边
+            else if (root.left == null) {
+                return root.right;
             }
-            // Case D - root有两个children，需要找到left child中最小的node
+            // D - 有两个children，root设为left里最小的值，并删除那个最小值
             else {
-                root.value = findMinNode(root).value;
-                root.leftChild = deleteNode(root.leftChild, root.value);
+                root.value = getMinNode(root.left).value;
+                root.left = deleteNode(root.left, root.value);
             }
         }
         return root;
     }
-    private Node findMinNode(Node root) {
-        Node minNode = root;
-        while (minNode.leftChild != null) {
-            minNode = minNode.leftChild;
+    private Node<T> getMinNode(Node<T> root) {
+        Node<T> minNode = root;
+        while (minNode.left != null) {
+            minNode = minNode.left;
         }
         return minNode;
     }
+
     public static void main(String[] args) {
-        BinarySearchTree t = new BinarySearchTree();
-        t.insert(7);
-        t.insert(4);
-        t.insert(9);
-        t.insert(1);
-        t.insert(6);
-        t.insert(8);
-        t.insert(10);
+        BinarySearchTree<String> t = new BinarySearchTree<>();
+        t.insert("A");
+        t.insert("B");
+        t.insert("C");
+        t.insert("E");
+        t.insert("G");
+        t.insert("Z");
 
-        System.out.println(t.find(7));
-        System.out.println(t.find(5));
+        System.out.println(t.find("F"));
+        System.out.println(t.find("D"));
 
-        t.delete(7);
-        t.delete(1);
-        t.delete(10);
+        t.insert("D");
+        System.out.println(t.find("D"));
+        t.delete("E");
 
         System.out.println("done");
     }
 }
-
-
