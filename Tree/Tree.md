@@ -24,3 +24,7 @@ left < node < right
   - Pre-order: _Root_, Left, Right
   - In-order: Left, _Root_, Right (ascending order)
   - Post-order: Left, Right, _Root_(leaves first, then root)
+
+**Height:** bottom-up
+
+ **Depth:** top-down

@@ -140,6 +140,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
         traversePostOrder(root.right);
         System.out.println(root);
     }
+    private int height(Node<T> root) {
+        if (root == null)
+            return -1;
+        if (root.left == null && root.right == null)
+            return 0;
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+    public int height() {
+        return height(root);
+    }
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> t = new BinarySearchTree<>();
@@ -151,5 +161,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         t.insert(8);
         t.insert(10);
         t.traversePostOrder();
+        System.out.println(t.height());
     }
 }
