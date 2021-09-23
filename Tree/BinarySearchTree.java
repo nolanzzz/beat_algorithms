@@ -156,18 +156,39 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public int height() {
         return height(root);
     }
+    public boolean equals(BinarySearchTree<T> other) {
+        if (other == null) {
+            return false;
+        }
+        return equals(root, other.root);
+    }
+    private boolean equals(Node<T> first, Node<T> second) {
+        if (first == null && second == null) {
+            return true;
+        }
+        if (first != null && second != null) {
+            return first.value.compareTo(second.value) == 0
+                    && equals(first.left, second.left)
+                    && equals(first.right, second.right);
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        BinarySearchTree<Integer> t = new BinarySearchTree<>();
-        t.insert(7);
-        t.insert(4);
-        t.insert(9);
-        t.insert(1);
-        t.insert(6);
-        t.insert(8);
-        t.insert(10);
-        t.traversePostOrder();
-        System.out.println(t.height());
-        System.out.println(t.min());
+        BinarySearchTree<Integer> t1 = new BinarySearchTree<>();
+        BinarySearchTree<Integer> t2 = new BinarySearchTree<>();
+        t1.insert(7);
+        t1.insert(4);
+        t1.insert(9);
+        t1.insert(1);
+
+        t2.insert(7);
+        t2.insert(4);
+        t2.insert(9);
+        t2.insert(1);
+        t2.traversePostOrder();
+        System.out.println(t1.height());
+        System.out.println(t1.min());
+        System.out.println(t2.equals(t1));
     }
 }
