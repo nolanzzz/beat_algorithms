@@ -107,6 +107,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return minNode;
     }
+    public T min() {
+        if (root == null) {
+            return null;
+        }
+        return getMinNode(root).value;
+    }
     public void traversePreOrder() {
         traversePreOrder(root);
     }
@@ -162,5 +168,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         t.insert(10);
         t.traversePostOrder();
         System.out.println(t.height());
+        System.out.println(t.min());
     }
 }
