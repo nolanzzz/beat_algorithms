@@ -107,23 +107,28 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return minNode;
     }
+    public void traversePreOrder() {
+        traversePreOrder(root);
+    }
+    private void traversePreOrder(Node<T> root) {
+        // root, left, right
+        if (root == null) {
+            return;
+        }
+        System.out.println(root);
+        traversePreOrder(root.left);
+        traversePreOrder(root.right);
+    }
 
     public static void main(String[] args) {
-        BinarySearchTree<String> t = new BinarySearchTree<>();
-        t.insert("A");
-        t.insert("B");
-        t.insert("C");
-        t.insert("E");
-        t.insert("G");
-        t.insert("Z");
-
-        System.out.println(t.find("F"));
-        System.out.println(t.find("D"));
-
-        t.insert("D");
-        System.out.println(t.find("D"));
-        t.delete("E");
-
-        System.out.println("done");
+        BinarySearchTree<Integer> t = new BinarySearchTree<>();
+        t.insert(7);
+        t.insert(4);
+        t.insert(9);
+        t.insert(1);
+        t.insert(6);
+        t.insert(8);
+        t.insert(10);
+        t.traversePreOrder();
     }
 }
