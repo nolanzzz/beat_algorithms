@@ -119,6 +119,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         traversePreOrder(root.left);
         traversePreOrder(root.right);
     }
+    public void traverseInOrder() {
+        traverseInOrder(root);
+    }
     private void traverseInOrder(Node<T> root) {
         // left, root, right
         if (root == null)
@@ -127,8 +130,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println(root);
         traverseInOrder(root.right);
     }
-    public void traverseInOrder() {
-        traverseInOrder(root);
+    public void traversePostOrder() {
+        traversePostOrder(root);
+    }
+    private void traversePostOrder(Node<T> root) {
+        if (root == null)
+            return;
+        traversePostOrder(root.left);
+        traversePostOrder(root.right);
+        System.out.println(root);
     }
 
     public static void main(String[] args) {
@@ -140,6 +150,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         t.insert(6);
         t.insert(8);
         t.insert(10);
-        t.traverseInOrder();
+        t.traversePostOrder();
     }
 }
