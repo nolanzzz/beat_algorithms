@@ -1,4 +1,4 @@
-package DataStructures.Tree;
+package DataStructures.BinarySearchTree;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     class Node<T> {

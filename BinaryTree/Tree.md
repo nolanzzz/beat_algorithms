@@ -5,18 +5,6 @@
 - Compilers
 - Compression (JPEG, MP3)
 
-### BinarySearchTree
-
-left < node < right
-
-### Operations
-
-- Search: `O(logn)`
-- Insert: `O(logn)`
-- Delete: `O(logn)`
-
-**More efficient then Linkedlist and ArrayList**
-
 ### Tree Traversals
 
 - **Breadth First / Level Order**

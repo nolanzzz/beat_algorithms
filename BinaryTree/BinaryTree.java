@@ -1,8 +1,8 @@
-package DataStructures.Tree;
+package DataStructures.BinaryTree;
 
 import java.util.ArrayList;
 
-public class Tree {
+public class BinaryTree {
     class Node {
         private int value;
         private Node left;
@@ -12,7 +12,7 @@ public class Tree {
         }
     }
     private Node root;
-    public Tree() {
+    public BinaryTree() {
         root = null;
     }
     public void insert(int value) {
@@ -71,7 +71,7 @@ public class Tree {
         }
     }
     public static void main(String[] args) {
-        Tree t = new Tree();
+        BinaryTree t = new BinaryTree();
         t.insert(1);
         t.insert(2);
         t.insert(3);
