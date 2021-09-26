@@ -1,5 +1,7 @@
 package DataStructures.Tree;
 
+import java.util.ArrayList;
+
 public class Tree {
     class Node {
         private int value;
@@ -34,25 +36,28 @@ public class Tree {
             }
         }
     }
-    public void printNodesAtDistance(int distance) {
-        printNodesAtDistance(root, distance);
+    public ArrayList<Integer> printNodesAtDistance(int distance) {
+        ArrayList<Integer> list = new ArrayList<>();
+        printNodesAtDistance(root, distance, list);
+        return list;
     }
-    private void printNodesAtDistance(Node root, int distance) {
+    private ArrayList<Integer> printNodesAtDistance(Node root, int distance, ArrayList<Integer> list) {
         if (root == null) {
-            return;
+            return list;
         }
         if (distance == 0) {
-            System.out.println(root.value);
-            return;
+            list.add(root.value);
+            return list;
         }
-        printNodesAtDistance(root.left, distance - 1);
-        printNodesAtDistance(root.right, distance - 1);
+        printNodesAtDistance(root.left, distance - 1, list);
+        printNodesAtDistance(root.right, distance - 1, list);
+        return list;
     }
     public static void main(String[] args) {
         Tree t = new Tree();
         t.insert(1);
         t.insert(2);
         t.insert(3);
-        t.printNodesAtDistance(1);
+        System.out.println(t.printNodesAtDistance(0));
     }
 }
