@@ -36,12 +36,12 @@ public class Tree {
             }
         }
     }
-    public ArrayList<Integer> printNodesAtDistance(int distance) {
+    public ArrayList<Integer> getNodesAtDistance(int distance) {
         ArrayList<Integer> list = new ArrayList<>();
-        printNodesAtDistance(root, distance, list);
+        getNodesAtDistance(root, distance, list);
         return list;
     }
-    private ArrayList<Integer> printNodesAtDistance(Node root, int distance, ArrayList<Integer> list) {
+    private ArrayList<Integer> getNodesAtDistance(Node root, int distance, ArrayList<Integer> list) {
         if (root == null) {
             return list;
         }
@@ -49,8 +49,8 @@ public class Tree {
             list.add(root.value);
             return list;
         }
-        printNodesAtDistance(root.left, distance - 1, list);
-        printNodesAtDistance(root.right, distance - 1, list);
+        getNodesAtDistance(root.left, distance - 1, list);
+        getNodesAtDistance(root.right, distance - 1, list);
         return list;
     }
     public static void main(String[] args) {
@@ -58,6 +58,6 @@ public class Tree {
         t.insert(1);
         t.insert(2);
         t.insert(3);
-        System.out.println(t.printNodesAtDistance(0));
+        System.out.println(t.getNodesAtDistance(0));
     }
 }
