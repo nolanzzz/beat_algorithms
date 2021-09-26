@@ -53,11 +53,28 @@ public class Tree {
         getNodesAtDistance(root.right, distance - 1, list);
         return list;
     }
+    private int height(Node root) {
+        if (root == null)
+            return -1;
+        if (root.left == null && root.right == null)
+            return 0;
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+    public int height() {
+        return height(root);
+    }
+    public void traverseLevelOrder() {
+        for (int i = 0; i <= height(); i++) {
+            for (int value : getNodesAtDistance(i)) {
+                System.out.println(value);
+            }
+        }
+    }
     public static void main(String[] args) {
         Tree t = new Tree();
         t.insert(1);
         t.insert(2);
         t.insert(3);
-        System.out.println(t.getNodesAtDistance(0));
+        t.traverseLevelOrder();
     }
 }
