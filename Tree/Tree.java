@@ -34,12 +34,25 @@ public class Tree {
             }
         }
     }
-
+    public void printNodesAtDistance(int distance) {
+        printNodesAtDistance(root, distance);
+    }
+    private void printNodesAtDistance(Node root, int distance) {
+        if (root == null) {
+            return;
+        }
+        if (distance == 0) {
+            System.out.println(root.value);
+            return;
+        }
+        printNodesAtDistance(root.left, distance - 1);
+        printNodesAtDistance(root.right, distance - 1);
+    }
     public static void main(String[] args) {
         Tree t = new Tree();
         t.insert(1);
         t.insert(2);
         t.insert(3);
-        t.insert(4);
+        t.printNodesAtDistance(1);
     }
 }
