@@ -13,7 +13,7 @@ public class AVLTree {
             return "value=" + this.value;
         }
     }
-    private AVLNode root = null;
+    private AVLNode root;
     public void insert(int value) {
         this.root = insert(this.root, value);
     }
@@ -24,7 +24,7 @@ public class AVLTree {
         if (value < root.value) {
             root.left = insert(root.left, value);
         }
-        else {
+        else if (value > root.value)  {
             root.right = insert(root.right, value);
         }
         updateHeight(root);
@@ -59,9 +59,7 @@ public class AVLTree {
     }
     private AVLNode rotateRight(AVLNode root) {
         AVLNode newRoot = root.left;
-        if (newRoot.right != null) {
-            root.left = newRoot.right;
-        }
+        root.left = newRoot.right;
         newRoot.right = root;
         updateHeight(root);
         updateHeight(newRoot);
@@ -69,9 +67,7 @@ public class AVLTree {
     }
     private AVLNode rotateLeft(AVLNode root) {
         AVLNode newRoot = root.right;
-        if (newRoot.left != null) {
-            root.right = newRoot.left;
-        }
+        root.right = newRoot.left;
         newRoot.left = root;
         updateHeight(root);
         updateHeight(newRoot);
